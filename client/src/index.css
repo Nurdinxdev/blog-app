@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sidebar {
+  @apply bg-gray-800 fixed sm:w-96 w-full h-full shadow-md translate-x-[100%] transition-transform duration-300 top-0 right-0;
+}
+
+.sidebar-open {
+  transform: translateX(0);
+}
