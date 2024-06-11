@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Posts from "../components/Posts";
 import usePosts from "../hooks/usePosts";
 import LoadingSkeleton from "../components/LoadingSkeleton";
-import { useParams } from "react-router-dom";
 
 const Home = () => {
   const Categories = [

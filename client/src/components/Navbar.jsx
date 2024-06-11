@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import SearchBar from "./SearchBar";
 import { useAuthContext } from "../Context";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -67,7 +66,6 @@ const Navbar = () => {
           </div>
 
           <div className='flex items-center space-x-3'>
-            {/* <SearchBar /> */}
             <div className='relative' ref={dropdownRef}>
               <button
                 onClick={toggleDropdown}
