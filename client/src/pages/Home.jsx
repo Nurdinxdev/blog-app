@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Posts from "../components/Posts";
 import usePosts from "../hooks/usePosts";
-import LoadingSkeleton from "../components/LoadingSkeleton";
 
 const Home = () => {
   const Categories = [
@@ -13,12 +12,13 @@ const Home = () => {
     { title: "Cat", name: "cat" },
     { title: "Car", name: "car" },
   ];
-  const category = window.location.search.split("=")[1];
+  const category = window.location.search;
   const [q, setQ] = useState(category || "");
   const { loading, getPost, posts } = usePosts();
 
   useEffect(() => {
     if (loading) return;
+    console.log(category);
     getPost(!q ? "latest post" : q);
   }, [q]);
 
@@ -40,7 +40,7 @@ const Home = () => {
           ))}
         </select>
         <div className='divider'></div>
-        {loading ? <LoadingSkeleton /> : <Posts posts={posts} />}
+        <Posts posts={posts} loading={loading} />
       </div>
     </main>
   );

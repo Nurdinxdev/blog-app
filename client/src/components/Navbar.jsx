@@ -35,12 +35,17 @@ const Navbar = () => {
   }, [dropdownOpen]);
 
   const handleLogout = async () => {
+    const promise = axios.delete("/api/auth/logout");
+
+    toast.promise(promise, {
+      loading: "Loading...",
+      success: (e) => e.data.msg,
+      error: (e) => e.message,
+    });
     try {
-      const { data } = await axios.delete("/api/auth/logout");
-      toast.success(data.msg);
+      await promise;
       localStorage.removeItem("user");
     } catch (error) {
-      toast.error(error.message);
       console.log(error);
     } finally {
       setAuthUser(false);
@@ -50,7 +55,7 @@ const Navbar = () => {
   };
 
   const handleLogin = async () => {
-    window.location.href = "http://localhost:4001/api/auth/google";
+    window.location.href = "https://api-x-blog-app.vercel.app/api/auth/google";
   };
 
   return (

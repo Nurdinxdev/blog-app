@@ -9,7 +9,6 @@ const usePosts = () => {
     setLoading(true);
     try {
       const { data } = await axios.get("/api/posts?category=" + category);
-      console.log(data);
       setPosts(data);
     } catch (error) {
       console.log(error);

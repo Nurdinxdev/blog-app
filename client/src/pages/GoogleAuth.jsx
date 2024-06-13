@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../Context";
+import LoadingSkeleton from "../components/LoadingSkeleton";
 
 const GoogleAuth = () => {
   const navigate = useNavigate();
@@ -12,13 +13,13 @@ const GoogleAuth = () => {
     const checkCookieAndGetToken = async () => {
       try {
         // Periksa apakah cookie 'jwt' ada
-        // const hasCookie = document.cookie
-        //   .split(";")
-        //   .some((item) => item.trim().startsWith("jwt="));
+        const hasCookie = document.cookie
+          .split(";")
+          .some((item) => item.trim().startsWith("jwt="));
 
-        // if (!hasCookie) {
-        //   throw new Error("No cookie found");
-        // }
+        if (hasCookie) {
+          throw new Error("your logined");
+        }
 
         // Lanjutkan jika cookie ada
         const { data } = await axios.post(
@@ -43,7 +44,13 @@ const GoogleAuth = () => {
     checkCookieAndGetToken();
   }, [navigate]);
 
-  return <div>Redirecting...</div>;
+  return (
+    <div className='flex flex-row items-center justify-center'>
+      <div className='w-full sm:w-[50%] mx-4'>
+        <LoadingSkeleton />
+      </div>
+    </div>
+  );
 };
 
 export default GoogleAuth;

@@ -162,8 +162,8 @@ const getAllReplies = (commentId, comments) => {
     .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
     .sort((a, b) => (a.likes.length > b.likes.length ? -1 : 1));
 
-  const userReplies = replies.filter((r) => r.author.id === user.id);
-  const anotherReplies = replies.filter((r) => r.author.id !== user.id);
+  const userReplies = replies.filter((r) => r.author.id === user?.id);
+  const anotherReplies = replies.filter((r) => r.author.id !== user?.id);
   const allReplies = [...userReplies, ...anotherReplies];
 
   return allReplies;
