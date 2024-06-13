@@ -12,14 +12,14 @@ import db from "./config/database.js";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
-const URL = [process.env.URL, "http://localhost:5173"];
+const URL = process.env.URL || "http://localhost:5173";
 
-const sessiosStore = SequelizeStore(session.Store);
-const store = new sessiosStore({
+const SequelizeSessionStore = SequelizeStore(session.Store);
+const store = new SequelizeSessionStore({
   db: db,
 });
 const corsOptions = {
-  origin: URL,
+  origin: [URL, "http://localhost:5173"],
   credentials: true,
   methods: ["GET", "POST", "DELETE", "OPTIONS", "PATCH", "PUT"],
 };
@@ -54,7 +54,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/auth", authRoutes);
 app.get("/*", (req, res) => {
-  res.send("Not Found");
+  res.status(404).send("Not Found");
 });
 
 // Error handling middleware
