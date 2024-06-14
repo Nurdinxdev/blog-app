@@ -55,6 +55,7 @@ const Navbar = () => {
   };
 
   const handleLogin = async () => {
+    toggleDropdown();
     window.location.href = "https://api-x-blog-app.vercel.app/api/auth/google";
   };
 
@@ -73,7 +74,7 @@ const Navbar = () => {
           <div className='flex items-center space-x-3'>
             <div className='relative' ref={dropdownRef}>
               <button
-                onClick={toggleDropdown}
+                onClick={authUser ? toggleDropdown : handleLogin}
                 className={`flex items-center justify-center rounded-full ${
                   authUser
                     ? "w-10 h-10 "
@@ -87,11 +88,7 @@ const Navbar = () => {
                     className='w-full h-full rounded-full'
                   />
                 ) : (
-                  <Link
-                    className='flex items-center'
-                    to={"#"}
-                    onClick={handleLogin}
-                  >
+                  <Link className='flex items-center' to={"#"}>
                     Sign In with <FaGoogle className='inline ml-1' />
                   </Link>
                 )}
