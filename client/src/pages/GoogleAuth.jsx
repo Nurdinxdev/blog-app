@@ -32,7 +32,6 @@ const GoogleAuth = () => {
 
         localStorage.setItem("user", JSON.stringify(data.user));
         setAuthUser(data.user);
-        // Redirect pengguna ke halaman beranda atau halaman yang diinginkan
         navigate("/");
       } catch (error) {
         console.error("Error fetching token:", error);
