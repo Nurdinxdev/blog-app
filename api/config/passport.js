@@ -39,6 +39,14 @@ passport.use(
           avatar: user.avatar,
         };
 
+        // Create JWT
+        const token = jwt.sign(authUser, process.env.JWT_SECRET, {
+          expiresIn: "1d",
+        });
+
+        // Attach JWT to user object
+        authUser.token = token;
+
         return done(null, authUser);
       } catch (err) {
         return done(err, false);

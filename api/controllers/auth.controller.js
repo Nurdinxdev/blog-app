@@ -6,20 +6,7 @@ dotenv.config();
 
 export const login = async (req, res) => {
   try {
-    const { userId } = req.params;
-
-    const user = await User.findByPk(userId);
-    if (!user) return res.status(404).json({ msg: "User not found" });
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "15d",
-    });
-
-    res.cookie("jwt", token, {
-      maxAge: 1000 * 60 * 60 * 24 * 15,
-      httpOnly: true,
-      sameSite: "strict",
-      secure: process.env.NODE_ENV === "production",
-    });
+    const { id, username, email, avatar } = req.user;
 
     const authUser = { id, username, email, avatar };
 
