@@ -56,7 +56,7 @@ const Navbar = () => {
 
   const handleLogin = async () => {
     toggleDropdown();
-    window.location.href = "https://api-x-blog-app.vercel.app/api/auth/google";
+    window.location.href = "http://localhost:4001/api/auth/google";
   };
 
   return (

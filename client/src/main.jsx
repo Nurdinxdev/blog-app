@@ -6,7 +6,7 @@ import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./Context.jsx";
 
-axios.defaults.baseURL = "https://api-x-blog-app.vercel.app"; // your backend url
+axios.defaults.baseURL = "http://localhost:4001"; // your backend url
 axios.defaults.withCredentials = true;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
