@@ -5,6 +5,15 @@ import dotenv from "dotenv";
 
 dotenv.config();
 const r = express.Router();
+const successRedirect =
+  process.env.NODE_ENV === "production"
+    ? `${process.env.URL}/login`
+    : "http://localhost:5173/auth/google/callback";
+const failureRedirect =
+  process.env.NODE_ENV === "production"
+    ? `${process.env.URL}/`
+    : "http://localhost:5173/";
+
 r.get(
   "/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
@@ -12,8 +21,8 @@ r.get(
 r.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: `${process.env.URL}/`,
-    successRedirect: `${process.env.URL}/login`,
+    failureRedirect: failureRedirect,
+    successRedirect: successRedirect,
   })
 );
 r.post("/login", login);
