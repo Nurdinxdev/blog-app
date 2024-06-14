@@ -5,8 +5,6 @@ dotenv.config();
 
 export const login = (req, res) => {
   try {
-    if (!req.user)
-      return res.status(401).json({ msg: "Unauthorized - Invalid token" });
     const { id, username, email, avatar } = req?.user?.dataValues;
     const token = jwt.sign({ userId: id }, process.env.JWT_SECRET, {
       expiresIn: "15d",
