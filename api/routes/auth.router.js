@@ -8,7 +8,7 @@ const r = express.Router();
 const successRedirect =
   process.env.NODE_ENV === "production"
     ? `${process.env.URL}/login`
-    : "http://localhost:5173/auth/google/callback";
+    : "http://localhost:5173/login";
 const failureRedirect =
   process.env.NODE_ENV === "production"
     ? `${process.env.URL}/`

@@ -12,14 +12,17 @@ import db from "./config/database.js";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
-const URL = `${process.env.URL}` || "http://localhost:5173";
+const URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.URL
+    : "http://localhost:5173";
 
 const SequelizeSessionStore = SequelizeStore(session.Store);
 const store = new SequelizeSessionStore({
   db: db,
 });
 const corsOptions = {
-  origin: [URL, "http://localhost:5173"],
+  origin: URL,
   credentials: true,
   methods: ["GET", "POST", "DELETE", "OPTIONS", "PATCH", "PUT"],
 };
