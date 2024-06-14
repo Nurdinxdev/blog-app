@@ -38,6 +38,8 @@ passport.use(
           email: user.email,
           avatar: user.avatar,
         };
+
+        req.authUser = authUser;
         return done(null, authUser);
       } catch (err) {
         return done(err, false);

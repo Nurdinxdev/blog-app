@@ -5,7 +5,8 @@ dotenv.config();
 
 export const login = (req, res) => {
   try {
-    const { id, username, email, avatar } = req?.user?.dataValues;
+    console.log(req?.authUser);
+    const { id, username, email, avatar } = req?.authUser;
     const token = jwt.sign({ userId: id }, process.env.JWT_SECRET, {
       expiresIn: "15d",
     });
